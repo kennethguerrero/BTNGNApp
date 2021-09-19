@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BTNGNApp.Views.EditCoffeePage"
+    xmlns:vm="clr-namespace:BTNGNApp.ViewModels"
+    Title="{Binding Title}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundLight}, Dark={StaticResource WindowBackgroundDark}}"
+    x:DataType="vm:EditCoffeeViewModel">
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+
+            <Label Text="Enter the required information"
+                   HorizontalOptions="Center"
+                   Padding="0,20,0,20"
+                   Style="{StaticResource AppLabel}"/>
+
+            <Frame Style="{StaticResource AppFrame}">
+                <StackLayout>
+
+                    <Entry Text="{Binding CoffeeType}"
+                           Placeholder="Coffee Type"
+                           Style="{StaticResource AppEntry}">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>CapitalizeWord</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+            
+                <Entry Text="{Binding CoffeeWeight}"
+                       Placeholder="Weight"
+                       Style="{StaticResource AppEntry}"/>
+
+                <Entry Text="{Binding CoffeeQuantity}"
+                       Placeholder="Quantity"
+                       Style="{StaticResource AppEntry}"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Switch IsToggled="{Binding IsStock}"
+                            Style="{StaticResource AppSwitch}"/>
+                    <Label Text="Stock"
+                           Padding="0,5,0,0"
+                           Style="{StaticResource AppLabel}"/>
+                </StackLayout>
+
+                <Entry Text="{Binding SoldTo}"
+                       Placeholder="Sold to"
+                       Style="{StaticResource AppEntry}">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>CapitalizeWord</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+
+                <DatePicker Date="{Binding TimeStamp}"
+                            Format="D"
+                            Style="{StaticResource AppDatePicker}"/>
+
+                </StackLayout>
+            </Frame>
+
+            <StackLayout>
+                <Button Text="Save"
+                        Command="{Binding SaveCommand}"
+                        Style="{StaticResource AppButton}"/>
+                <Button Text="Cancel"
+                        Command="{Binding CancelCommand}"
+                        Style="{StaticResource AppButton}"
+                        BackgroundColor="DimGray"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BTNGNApp.Controls.FlyoutFooter">
+
+    <StackLayout Margin="0,0,0,20">
+        <Label Text="BTNGÑ"
+                TextColor="{StaticResource Primary}"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                FontSize="12"/>
+        <Label Text="EST. 2018"
+                TextColor="{StaticResource Primary}"
+                HorizontalOptions="Center"
+                FontSize="10"/>
+    </StackLayout>
+
+</ContentView>

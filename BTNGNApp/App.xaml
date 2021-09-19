@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BTNGNApp.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--<Color x:Key="Primary">#2196F3</Color>-->
+            <Color x:Key="Primary">Goldenrod</Color>
+
+            <x:String x:Key="IconCoffee">&#x2615;</x:String>
+            <x:String x:Key="IconNew">&#xf055;</x:String>
+            <x:String x:Key="IconList">&#xf03a;</x:String>
+            <x:String x:Key="IconCheck">&#xf46c;</x:String>
+            <x:String x:Key="IconAbout">&#xf059;</x:String>
+
+            <Color x:Key="TextColorLight">Black</Color>
+            <Color x:Key="TextColorDark">White</Color>            
+            <Color x:Key="TextColorGray">Gray</Color>
+
+            <Color x:Key="SystemGreen">#34C759</Color>
+            <Color x:Key="SystemRed">#FF3B30</Color>
+
+            <Color x:Key="SystemGray">#AEAEB2</Color>
+            <Color x:Key="SystemGray2">#f2f2f7</Color>
+            <Color x:Key="SystemGray3">#DCDCDC</Color>
+
+            <Color x:Key="SystemBlack">black</Color>
+            <Color x:Key="SystemBlack2">#141414</Color>
+            <Color x:Key="SystemBlack3">#1f1f1f</Color>
+            <Color x:Key="SystemBlack4">#292929</Color>
+            <Color x:Key="SystemBlack5">#333333</Color>
+
+            <Color x:Key="WindowBackgroundLight">#f2f2f7</Color>
+            <Color x:Key="WindowBackgroundDark">Black</Color>
+
+            <Color x:Key="ButtonBackground">Goldenrod</Color>
+
+            <Style x:Key="AppButton"
+                   TargetType="Button">
+                <Setter Property="FontSize"
+                        Value="17" />
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource ButtonBackground}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource TextColorDark}" />
+            </Style>
+
+            <Style x:Key="AppLabel"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
+                <Setter Property="FontSize"
+                        Value="17" />
+            </Style>
+
+            <Style x:Key="AppLabelMicro"
+                   TargetType="Label"
+                   BasedOn="{StaticResource AppLabel}">
+                <Setter Property="FontSize"
+                        Value="12" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource TextColorGray}" />
+            </Style>
+
+            <Style x:Key="AppPicker"
+                   TargetType="Picker">
+                <Setter Property="FontSize"
+                        Value="17" />
+                <Setter Property="TitleColor"
+                        Value="Silver" />
+            </Style>
+
+            <Style x:Key="AppFrame"
+                   TargetType="Frame">
+                <Setter Property="CornerRadius"
+                        Value="15" />
+                <Setter Property="HasShadow"
+                        Value="True" />
+                <Setter Property="BorderColor"
+                        Value="{AppThemeBinding Light=Default, Dark={StaticResource SystemBlack4}}" />
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Light=Default, Dark={StaticResource SystemBlack3}}" />
+            </Style>
+
+            <Style x:Key="AppSwitch"
+                   TargetType="Switch">
+                <Setter Property="OnColor"
+                        Value="{OnPlatform Android={StaticResource SystemGreen}, iOS=Default}" />
+                <Setter Property="ThumbColor"
+                        Value="{OnPlatform Android={StaticResource SystemGray2}, iOS=Default}" />
+            </Style>
+
+            <Style x:Key="AppEntry"
+                   TargetType="Entry">
+                <Setter Property="FontSize"
+                        Value="17"/>
+                <Setter Property="PlaceholderColor"
+                        Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
+                <Setter Property="PlaceholderColor"
+                        Value="Silver" />
+            </Style>
+
+            <Style x:Key="AppDatePicker"
+                   TargetType="DatePicker">
+                <Setter Property="FontSize"
+                        Value="17" />
+            </Style>
+
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BTNGNApp.Views.CoffeeListPage"
+    xmlns:vm="clr-namespace:BTNGNApp.ViewModels"
+    xmlns:model="clr-namespace:BTNGNApp.Models"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:ffImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    Title="{Binding Title}"
+    Padding="10"
+    BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundLight}, Dark={StaticResource WindowBackgroundDark}}"
+    x:DataType="vm:CoffeeListViewModel">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add"
+                     Command="{Binding AddCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <ListView IsPullToRefreshEnabled="True"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None"
+                      ItemsSource="{Binding Coffees}"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      RefreshCommand="{Binding LoadCoffeesCommand}"
+                      SelectedItem="{Binding SelectedCoffee, Mode=TwoWay}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Coffee">
+
+                        <ViewCell>
+                            <SwipeView android:SwipeView.SwipeTransitionMode="Drag" BackgroundColor="Transparent">
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem BackgroundColor="{StaticResource SystemRed}"
+                                                   Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CoffeeListViewModel}}, Path=DeleteCommand}"
+                                                   CommandParameter="{Binding .}"
+                                                   Text="Delete"/>
+
+                                        <SwipeItem BackgroundColor="{StaticResource SystemGreen}"
+                                                   Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CoffeeListViewModel}}, Path=EditCommand}"
+                                                   CommandParameter="{Binding .}"
+                                                   Text="Edit"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                                <Grid Padding="10">
+                                    <Frame Style="{StaticResource AppFrame}">
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <ffImage:CachedImage WidthRequest="140"
+                                                                 DownsampleToViewSize="True"
+                                                                 LoadingPlaceholder="https://i.imgur.com/3O6kVa5.png"
+                                                                 ErrorPlaceholder="https://i.imgur.com/BkboBY8.png"
+                                                                 Source="{Binding ImageDisplay}"
+                                                                 CacheDuration="5"
+                                                                 FadeAnimationEnabled="True">
+                                            </ffImage:CachedImage>
+
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="130"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackLayout Grid.Column="0">
+                                                    <Label Text="{Binding Type}"
+                                                           Style="{StaticResource AppLabel}"/>
+                                                    <Label Text="{Binding WeightDisplay}"
+                                                           FontSize="13"
+                                                           Style="{StaticResource AppLabel}"/>
+                                                    <Label Text="{Binding QuantityDisplay}"
+                                                           FontSize="13"
+                                                           Style="{StaticResource AppLabel}"/>
+                                                </StackLayout>
+
+                                                <StackLayout Grid.Column="1"
+                                                             HorizontalOptions="EndAndExpand">
+                                                    <Label Text="{Binding TimestampDisplay}"
+                                                           Style="{StaticResource AppLabelMicro}"
+                                                           HorizontalTextAlignment="End"
+                                                           VerticalTextAlignment="End"/>
+                                                    <Label Text="{Binding StockDisplay}"
+                                                           Style="{StaticResource AppLabelMicro}"
+                                                           HorizontalTextAlignment="End"
+                                                           VerticalTextAlignment="End"/>
+                                                </StackLayout>
+                                            </Grid>
+                                        </StackLayout>
+
+                                    </Frame>
+                                </Grid>
+
+                            </SwipeView>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BTNGNApp.Views.CoffeeStocksPage"
+    xmlns:vm="clr-namespace:BTNGNApp.ViewModels"
+    Title="{Binding Title}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundLight}, Dark={StaticResource WindowBackgroundDark}}"
+    x:DataType="vm:CoffeeStocksViewModel">
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+
+            <Label Text="Enter the coffee type"
+                   HorizontalOptions="Center"
+                   Padding="0,20,0,20"
+                   Style="{StaticResource AppLabel}"/>
+
+            <Frame Style="{StaticResource AppFrame}" >
+                <StackLayout>
+
+                    <Picker Title="Select Coffee"
+                            ItemsSource="{Binding CoffeeTypes}"
+                            ItemDisplayBinding="{Binding Option}"
+                            SelectedItem="{Binding SelectedCoffeeType, Mode=TwoWay}"
+                            Style="{StaticResource AppPicker}"/>
+
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="0,20,0,0">
+                        <Label Text="Remaining Stocks:"
+                               Style="{StaticResource AppLabel}"/>
+                        <Label Text="{Binding RemainingStocks}"
+                               Style="{StaticResource AppLabel}"/>
+                        <Label Text="g"
+                               Style="{StaticResource AppLabel}"/>
+                    </StackLayout>
+
+                </StackLayout>
+            </Frame>
+
+            <StackLayout>
+                <Button Text="Check Stocks"
+                        Command="{Binding GetStocksCommand}"
+                        Style="{StaticResource AppButton}"/>
+            </StackLayout>
+
+            <Label Text="Calculating..."
+                   Style="{StaticResource AppLabel}"
+                   TextColor="{StaticResource SystemGray}"
+                   IsVisible="{Binding IsBusy}"
+                   HorizontalOptions="Center"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
